@@ -32,7 +32,7 @@ def check_password():
     # Show inputs for username + password.
     login_form()
     if "password_correct" in st.session_state:
-        st.error("😕 User not known or password incorrect")
+        st.error("User not known or password incorrect")
     return False
 
 def auth():
