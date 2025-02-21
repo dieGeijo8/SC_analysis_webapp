@@ -15,12 +15,12 @@ def scatter_chart_off_ball_runs(x_metric, y_metric, grouping_column, response_df
     df_grouped["total_runs"] = df_grouped[x_metric] + df_grouped[y_metric]
 
     # Compute percentile thresholds
-    top_15_threshold = round(np.percentile(df_grouped["total_runs"], 75), 2)# 85th percentile
-    bottom_15_threshold = round(np.percentile(df_grouped["total_runs"], 25), 2)# 15th percentile
+    top_25_threshold = round(np.percentile(df_grouped["total_runs"], 75), 2)# 75th percentile
+    bottom_25_threshold = round(np.percentile(df_grouped["total_runs"], 25), 2)# 25th percentile
 
-    # Get short names in the top 15% and bottom 15%
-    top_15_short_names = df_grouped[df_grouped["total_runs"] >= top_15_threshold][grouping_column].tolist()
-    bottom_15_short_names = df_grouped[df_grouped["total_runs"] <= bottom_15_threshold][grouping_column].tolist()
+    # Get short names in the top 25% and bottom 25%
+    top_15_short_names = df_grouped[df_grouped["total_runs"] >= top_25_threshold][grouping_column].tolist()
+    bottom_15_short_names = df_grouped[df_grouped["total_runs"] <= bottom_25_threshold][grouping_column].tolist()
     fig, ax = scatter.plot_scatter(
         df=df_grouped,
         x_metric=x_metric,  # Updated column name
