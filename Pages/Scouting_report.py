@@ -16,7 +16,7 @@ We want to scout a **different type of winger**:
 
 We retrieve players data on metrics about runs in behind, passes under pressure and passes to runs. 
 We consider **Wide Attackers** and actions performed in the **attacking third**, in the **wide right** or **wide left** channel.
-We consider only players with more than 5 matches. 
+We consider only players with more than 5 matches from Eredivise and Superliga. 
 
 We follow these steps:  
 1. **Retrieve and aggregate** the data.  
