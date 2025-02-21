@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title('Streamlit SkillCorner App')
+st.title('SkillCorner Streamlit App')
 
 st.markdown('''
 Welcome to the **SkillCorner Streamlit App**.
