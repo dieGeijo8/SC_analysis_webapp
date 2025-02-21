@@ -4,7 +4,9 @@ from Modules.Endpoints import *
 ## INTRO
 st.title('Physical')
 intro_offballruns = '''
-Set the input parameters and explore the **data** and **graphs** in the below section.  
+Set the input parameters and explore the **data** and **graphs** below.  
+
+The data and graphs will only update when you click **Retrieve Data** again.  
 '''
 st.markdown(intro_offballruns)
 

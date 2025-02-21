@@ -8,7 +8,7 @@ runs_params_left = {
     'age__lte': 27,
     'channel': 'wide_left',
     'third':  'attacking',
-    'run_type': 'run_in_behind,pulling_wide_run,overlap_run',
+    'run_type': 'run_in_behind',
     'group_by': 'player',
     'count_match__gte': 5
 }
@@ -63,7 +63,7 @@ passes_params_left = {
     'age__lte': 27,
     'channel': 'wide_left',
     'third':  'attacking',
-    'run_type': 'cross_receiver_run',
+    'run_type': 'all',
     'group_by': 'player',
     'count_match__gte': 5
 }
@@ -72,7 +72,7 @@ passes_params_right = {
     'competition_edition': '251,257',
     'group': 'WideAttacker',
     'age__lte': 27,
-    'channel': 'wide_left',
+    'channel': 'wide_right',
     'third':  'attacking',
     'run_type': 'all',
     'group_by': 'player',
@@ -97,10 +97,30 @@ norm_merged_df[columns_to_normalize] = (round((norm_merged_df[columns_to_normali
 
 st.title('Scouting of winger for AC Milan')
 
+st.markdown('''
+AC Milan has 2 very good wingers in Leao and Pulisic but very similar profiles: 
+- Prefer to receive the ball on feet.
+- Tend to cut inside. 
+- Take risks.
+
+We want to scout a **different type of winger**:  
+- **Runs in behind**.
+- Comfortable staying **wide**.
+- **Precise under high pressure**.
+
+We retrieve players data on metrics about runs in behind, passes under pressure and passes to runs. 
+We consider **Wide Attackers** and actions performed in the **attacking third**, in the **wide right** or **wide left** channel.
+We consider only players with more than 5 matches. 
+
+We follow these steps:  
+1. **Retrieve and aggregate** the data.  
+2. **Normalize** the metric columns and compute a **weighted score** for each player.  
+3. **Rank** players based on their weighted scores.  
+''')
 st.subheader('Data used', divider='grey')
 
 options = ["Hide", "Runs data", "Pressures data", "Passes data"]
-pill_selection = st.pills("See data used", options, selection_mode="single", default='Hide')
+pill_selection = st.pills("Explore the aggregated data used.", options, selection_mode="single", default='Hide')
 if pill_selection == 'Runs data':
     st.dataframe(runs_complete_df)
 if pill_selection == 'Pressures data':
