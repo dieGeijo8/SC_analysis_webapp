@@ -1,6 +1,30 @@
 from Modules.Endpoints import *
 from Modules.SkillCornerVisualization import *
 
+st.title('Scouting of winger for AC Milan')
+
+st.markdown('''
+AC Milan has 2 very good wingers in Leao and Pulisic but very similar profiles: 
+- Prefer to receive the ball on feet.
+- Tend to cut inside. 
+- Take risks.
+
+We want to scout a **different type of winger**:  
+- **Runs in behind**.
+- Comfortable staying **wide**.
+- **Precise under high pressure**.
+
+We retrieve players data on metrics about runs in behind, passes under pressure and passes to runs. 
+We consider **Wide Attackers** and actions performed in the **attacking third**, in the **wide right** or **wide left** channel.
+We consider only players with more than 5 matches. 
+
+We follow these steps:  
+1. **Retrieve and aggregate** the data.  
+2. **Normalize** the metric columns and compute a **weighted score** for each player.  
+3. **Rank** players based on their weighted scores.  
+''')
+st.divider()
+
 # Get off ball runs data - left and right
 runs_params_left = {
     'competition_edition': '251,257',
@@ -95,28 +119,7 @@ norm_merged_df = merged_df.copy()
 norm_merged_df[columns_to_normalize] = (round((norm_merged_df[columns_to_normalize] - norm_merged_df[columns_to_normalize].min())
                                    / (norm_merged_df[columns_to_normalize].max() - norm_merged_df[columns_to_normalize].min()), 2))
 
-st.title('Scouting of winger for AC Milan')
 
-st.markdown('''
-AC Milan has 2 very good wingers in Leao and Pulisic but very similar profiles: 
-- Prefer to receive the ball on feet.
-- Tend to cut inside. 
-- Take risks.
-
-We want to scout a **different type of winger**:  
-- **Runs in behind**.
-- Comfortable staying **wide**.
-- **Precise under high pressure**.
-
-We retrieve players data on metrics about runs in behind, passes under pressure and passes to runs. 
-We consider **Wide Attackers** and actions performed in the **attacking third**, in the **wide right** or **wide left** channel.
-We consider only players with more than 5 matches. 
-
-We follow these steps:  
-1. **Retrieve and aggregate** the data.  
-2. **Normalize** the metric columns and compute a **weighted score** for each player.  
-3. **Rank** players based on their weighted scores.  
-''')
 st.subheader('Data used', divider='grey')
 
 options = ["Hide", "Runs data", "Pressures data", "Passes data"]
